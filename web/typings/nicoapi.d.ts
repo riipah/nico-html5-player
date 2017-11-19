@@ -17,6 +17,8 @@ declare namespace nico {
 
 	export interface EventDataData {
 		playerStatus: PlayerStatus;
+		currentTime: number;
+		duration: number;
 	}
 
 	export interface NicoPlayer {

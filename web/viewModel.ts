@@ -7,6 +7,7 @@ namespace nicoplayer {
 		public isPlaying = ko.observable(false);
 		private playerFactory: nico.NicoPlayerFactory = null;
 		private player: nico.NicoPlayer;
+		public progress = ko.observable<number>(0);
 		public videoId = ko.observable("http://www.nicovideo.jp/watch/sm4124456");
 
 		constructor(private readonly element: HTMLElement) {
@@ -44,6 +45,12 @@ namespace nicoplayer {
 
 			window.addEventListener("message", (e: nico.PlayerEvent) => {
 				switch (e.data.eventName) {
+					case "playerMetadataChange": {
+						if (e.data.data.duration) {
+							this.progress(e.data.data.currentTime / e.data.data.duration * 100);							
+						}
+					}
+					break;
 					case "playerStatusChange": {
 						switch (e.data.data.playerStatus) {
 							case nico.PlayerStatus.Pause:
