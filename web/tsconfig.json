@@ -1,0 +1,19 @@
+{
+	"compileOnSave": true,
+	"compilerOptions": {
+		"noImplicitAny": true,
+		"removeComments": true,
+		"preserveConstEnums": true,
+		"outFile": "script.js",
+		"lib": [ "dom", "es2015" ]
+	},	
+	"files": [
+		"typings/jquery.d.ts",
+		"typings/knockout.d.ts",
+		"typings/lodash.d.ts",
+		"typings/nicoapi.d.ts",
+		"typings/vocadb.d.ts",
+		"viewModel.ts",
+		"app.ts"
+	]
+}
