@@ -23,7 +23,7 @@
 							<input type="text" data-bind="value: videoId" class="form-control co-sm-10" placeholder="Nico Nico URL"/>							
 						</div>
 						<div class="col-auto">
-							<button data-bind="click: load" class="btn btn-primary">Load</button>							
+							<button data-bind="visible: isInit, click: load" class="btn btn-primary">Load</button>							
 						</div>
 					</div>
 				</form>

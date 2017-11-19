@@ -2,9 +2,10 @@ namespace nicoplayer {
 
 	export class ViewModel {
 
+		public isInit = ko.observable(false);
 		public isLoaded = ko.observable(false);
 		public isPlaying = ko.observable(false);
-		private playerFactory: nico.NicoPlayerFactory;
+		private playerFactory: nico.NicoPlayerFactory = null;
 		private player: nico.NicoPlayer;
 		public videoId = ko.observable("http://www.nicovideo.jp/watch/sm4124456");
 
@@ -23,7 +24,7 @@ namespace nicoplayer {
 		private getVideoId() {
 
 			// www.nicovideo.jp/watch/sm32280113
-			const regex = /http:\/\/www.nicovideo.jp\/watch\/(\w+)/g;
+			const regex = /(?:http:\/\/)?www.nicovideo.jp\/watch\/(\w+)/g;
 
 			const match = regex.exec(this.videoId());
 
@@ -36,7 +37,10 @@ namespace nicoplayer {
 
 		private async init() {
 
-			window.onNicoPlayerFactoryReady = factory => this.playerFactory = factory;
+			window.onNicoPlayerFactoryReady = factory => {
+				this.playerFactory = factory;
+				this.isInit(true);
+			};
 
 			window.addEventListener("message", (e: nico.PlayerEvent) => {
 				switch (e.data.eventName) {
@@ -69,6 +73,7 @@ namespace nicoplayer {
 			}
 
 			this.element.innerHTML = "";
+			this.isPlaying(false);
 			this.player = await this.createPlayer(videoId);
 			this.isLoaded(true);
 			this.play();
