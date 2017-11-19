@@ -8,18 +8,22 @@ declare namespace nico {
 		data: EventData;
 	}
 
-	export interface EventData {
-		data: EventDataData;
-		eventName: EventName;
+	export interface StatusEvent {
+		eventName: "playerStatusChange";
+		data: {
+			playerStatus: PlayerStatus;
+		};
 	}
 
-	type EventName = "playerMetadataChange" | "playerStatusChange";
-
-	export interface EventDataData {
-		playerStatus: PlayerStatus;
-		currentTime: number;
-		duration: number;
+	export interface MetadataEvent {
+		eventName: "playerMetadataChange";
+		data: {
+			currentTime: number;
+			duration: number;
+		};	
 	}
+
+	type EventData = StatusEvent | MetadataEvent;
 
 	export interface NicoPlayer {
 		play(): void;
