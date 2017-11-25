@@ -11,15 +11,12 @@ namespace nicoplayer {
 		public videoId = ko.observable("http://www.nicovideo.jp/watch/sm4124456");
 
 		constructor(private readonly element: HTMLElement) {
-
 			this.init();
-
 		}	
 
 		public async createPlayer(videoId: string) {
 			const player = await this.playerFactory.create(this.element, videoId);			
 			return player;
-
 		}
 
 		private getVideoId() {
@@ -104,10 +101,9 @@ namespace nicoplayer {
 				this.player.pause();
 		}
 
-		public async play() {
+		public play() {
 			if (this.player)
 				this.player.play();
-
 		}
 
 
