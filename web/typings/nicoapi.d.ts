@@ -23,7 +23,14 @@ declare namespace nico {
 		};	
 	}
 
-	type EventData = StatusEvent | MetadataEvent;
+	export interface ErrorEvent {
+		eventName: "error";
+		data: {
+			message: string;
+		};
+	}
+
+	type EventData = StatusEvent | MetadataEvent | ErrorEvent;
 
 	export interface NicoPlayer {
 		play(): void;

@@ -28,9 +28,15 @@
 					</div>
 				</form>
 				
-				<div id="player" style="margin-bottom: 10px;"></div>
+				<div data-bind="visible: isLoaded() && !error()">
+					<div id="player" style="margin-bottom: 10px;"></div>
+				</div>
 				
-				<div data-bind="visible: isLoaded" class="row">
+				<div data-bind="visible: error" class="alert alert-danger">
+					Error: <span data-bind="text: error"></span>
+				</div>
+				
+				<div data-bind="visible: isLoaded() && !error()" class="row">
 					<div class="col-auto">					
 						<button class="btn btn-primary" data-bind="visible: !isPlaying(), click: play">
 							<i class="fa fa-play" aria-hidden="true"></i>

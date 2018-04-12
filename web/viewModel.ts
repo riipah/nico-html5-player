@@ -9,6 +9,7 @@ namespace nicoplayer {
 		private player: nico.NicoPlayer;
 		public progress = ko.observable<number>(0);
 		public videoId = ko.observable("http://www.nicovideo.jp/watch/sm4124456");
+		public error = ko.observable<string>(null);
 
 		constructor(private readonly element: HTMLElement) {
 			this.init();
@@ -60,6 +61,9 @@ namespace nicoplayer {
 								this.onEnd();
 						}
 					}
+					case "error": {
+						this.error(e.data.data.message);
+					}
 				}
 			});
 
@@ -70,9 +74,10 @@ namespace nicoplayer {
 		public async load() {
 
 			const videoId = this.getVideoId();
+			this.error(null);
 
 			if (!videoId) {
-				alert("Invalid video");
+				this.error("Invalid video");
 				return;
 			}
 
