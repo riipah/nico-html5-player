@@ -721,7 +721,7 @@
     t._publicConfig = {
         servers: {
             extplayerv: "http://embed.nicovideo.jp",
-            extplayervDomain: "https://embed.nicovideo.jp",
+            extplayervDomain: "http://embed.nicovideo.jp",
             extplayervRes: "http://embed.res.nimg.jp",
             nicovideo: "http://www.nicovideo.jp",
             nicovideoSpweb: "http://sp.nicovideo.jp",
