@@ -63,7 +63,7 @@ namespace nicoplayer {
 				}
 			});
 
-			await $.getScript("https://embed.res.nimg.jp/js/api.js");
+			await $.getScript("api.js"); // Originally from https://embed.res.nimg.jp/js/api.js
 			
 		}
 
