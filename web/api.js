@@ -143,7 +143,7 @@
                     width: this.initialSize.width,
                     height: this.initialSize.height
                 }, this.parentElement),
-                this.connector = new i.ControllerIFrameConnector(this.playerId,this.EMBED_PLAYER_DOMAIN,this.iframeElement);
+                this.connector = new i.ControllerIFrameConnector(this.playerId,this.adjustProtocol(this.EMBED_PLAYER_DOMAIN),this.iframeElement);
                 var o = null;
                 this.connector.eventEmitter.on("playerStatusChange", function(e) {
                     r._playerStatus = e.playerStatus
