@@ -3,3 +3,5 @@
 * Dynamic loading of player
 * Controls: play, pause
 * Progress reporting
+
+## [Demo here](https://vocaloid.eu/vocaloid/nico-player/).
