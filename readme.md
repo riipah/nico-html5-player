@@ -39,3 +39,5 @@ window.addEventListener("message", (e: nico.PlayerEvent) => {
 		case "playerMetadataChange": {
 			...
 ```
+
+See the [TypeScript typings](https://github.com/riipah/nico-html5-player/blob/master/web/typings/nicoapi.d.ts) for more information.
