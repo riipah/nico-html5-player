@@ -61,6 +61,7 @@ namespace nicoplayer {
 								this.onEnd();
 						}
 					}
+					break;
 					case "error": {
 						this.error(e.data.data.message);
 					}
