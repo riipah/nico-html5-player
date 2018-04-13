@@ -1,6 +1,13 @@
 declare namespace nico {
 
+	/** Player factory */
 	export interface NicoPlayerFactory {
+		/**
+		 * Create a player.
+		 * @param element - Container HTML element.
+		 * @param watchId - Video being loaded, for example "sm1234567".
+		 * @return Promise containing the player object.
+		 */
 		create(element: HTMLElement, watchId: string): Promise<NicoPlayer>;
 	}
 
@@ -8,6 +15,7 @@ declare namespace nico {
 		data: EventData;
 	}
 
+	/** Player status has changed, for example playback has started or ended. */
 	export interface StatusEvent {
 		eventName: "playerStatusChange";
 		data: {
@@ -15,14 +23,27 @@ declare namespace nico {
 		};
 	}
 
+	/** Playback metadata has changed. This includes current position and total duration. */
 	export interface MetadataEvent {
 		eventName: "playerMetadataChange";
 		data: {
+			/** Current position in milliseconds */
 			currentTime: number;
+			/** Total video duration in milliseconds */
 			duration: number;
 		};	
 	}
 
+	export interface LoadCompleteEvent {
+		eventName: "loadComplete",
+		data: {
+			videoInfo: {
+				watchId: string
+			}
+		}
+	}
+
+	/** Playback error has occurred. */
 	export interface ErrorEvent {
 		eventName: "error";
 		data: {
@@ -30,10 +51,13 @@ declare namespace nico {
 		};
 	}
 
-	type EventData = StatusEvent | MetadataEvent | ErrorEvent;
+	type EventData = StatusEvent | MetadataEvent | LoadCompleteEvent | ErrorEvent;
 
+	/** Nico Nico player object */
 	export interface NicoPlayer {
+		/** Start playing current video */
 		play(): void;
+		/** Pause playback */
 		pause(): void;
 	}
 
@@ -43,4 +67,8 @@ declare namespace nico {
 		End = 4
 	}
 
+}
+
+interface Window {
+	onNicoPlayerFactoryReady: (callback: nico.NicoPlayerFactory) => void;
 }

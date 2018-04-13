@@ -116,7 +116,3 @@ namespace nicoplayer {
 	}
 
 }
-
-interface Window {
-	onNicoPlayerFactoryReady: (callback: nico.NicoPlayerFactory) => void;
-}
